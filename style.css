@@ -1,0 +1,259 @@
+/* =====================================
+   THE BURARI FILES - style.css
+   ===================================== */
+
+/* COLOURS, FONTS AND PHOTOS: change them here and the whole site updates */
+:root {
+  --charcoal: #171716;
+  --dark: #22211F;
+  --paper: #E8E0D0;
+  --brown: #8A7B68;
+  --grey: #A6A095;
+  --red: #8D2929;
+
+  --serif: "Playfair Display", Georgia, serif;
+  --sans: "Inter", Arial, sans-serif;
+  --mono: "Courier Prime", "Courier New", monospace;
+  --hand: "Caveat", cursive;
+
+  /* Swap these links for your own photos (or a file like url("house.jpg")) */
+  --photo-house: url("https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=1600&q=70");
+  --photo-closing: url("https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&w=1600&q=70");
+}
+
+/* ---------- Basics ---------- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;   /* smooth scrolling for the links */
+  }
+
+body {
+  background: var(--charcoal);
+  color: var(--paper);
+  font-family: var(--sans);
+  line-height: 1.7;
+}
+
+h1, h2, h3 { font-family: var(--serif); font-weight: 500; line-height: 1.2; }
+h2 { font-size: clamp(2rem, 5vw, 3.4rem); margin-bottom: 2rem; }
+h3 { font-size: 1.35rem; margin-bottom: 0.5rem; }
+p { margin-bottom: 1rem; }
+a { color: inherit; }
+
+/* keeps text in a readable column in the middle of the screen */
+.page { max-width: 1000px; margin: 0 auto; padding: 0 1.5rem; }
+
+section { padding: 6rem 0; }
+
+.small-label { font-family: var(--mono); font-size: 0.85rem; letter-spacing: 0.1em; color: var(--grey); }
+.dark-text { color: var(--brown); }
+.red-text { color: #c47a7a; }
+
+/* the red "rubber stamp" */
+.stamp {
+  display: inline-block;
+  font-family: var(--mono);
+  color: var(--red);
+  border: 2px solid var(--red);
+  padding: 0.2rem 0.8rem;
+  transform: rotate(-3deg);
+}
+
+.button {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.8rem 1.6rem;
+  border: 1px solid var(--paper);
+  font-family: var(--mono);
+  text-decoration: none;
+}
+.button:hover { background: var(--paper); color: var(--charcoal); }
+
+/* ---------- 1. Opening ---------- */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 5rem 1.5rem;
+  /* a flat dark layer on top of the photo so the text is readable */
+  background: linear-gradient(rgba(23, 23, 22, 0.8), rgba(23, 23, 22, 0.8)), var(--photo-house);
+  background-size: cover;
+  background-position: center;
+  background-color: var(--charcoal);   /* shows if the photo fails to load */
+}
+.hero-text { max-width: 700px; margin: 0 auto; width: 100%; animation: fade-in 2s; }
+.hero h1 { font-size: clamp(2.6rem, 10vw, 6rem); font-weight: 700; margin: 0.5rem 0; }
+.tagline { font-family: var(--serif); font-style: italic; font-size: 1.4rem; color: var(--grey); }
+.intro { max-width: 32rem; }
+.photo-credit { position: absolute; bottom: 1rem; left: 1.5rem; font-size: 0.75rem; color: var(--brown); margin: 0; }
+.scroll { position: absolute; bottom: 1rem; right: 1.5rem; font-family: var(--mono); font-size: 0.85rem; text-decoration: none; color: var(--grey); }
+
+/* the only animation on the site: the opening text fades in once */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ---------- 2. The Incident (paper) ---------- */
+.incident { background: var(--paper); color: var(--charcoal); }
+.incident-layout { display: flex; gap: 3rem; align-items: flex-start; }
+.story { flex: 2; max-width: 36rem; }
+.note-box { border-left: 3px solid var(--red); padding-left: 1rem; font-size: 0.95rem; }
+
+/* three facts, stacked like entries in a ledger */
+.facts { flex: 1; list-style: none; border-top: 2px solid var(--charcoal); }
+.facts li { padding: 1rem 0; border-bottom: 1px solid var(--brown); color: var(--brown); font-size: 0.9rem; }
+.facts .big { display: block; font-family: var(--serif); font-size: 2.6rem; line-height: 1.1; color: var(--charcoal); }
+
+/* ---------- 3. Timeline ---------- */
+.timeline { background: var(--dark); }
+.entry { display: flex; gap: 2rem; padding: 1.5rem 0; border-top: 1px solid var(--brown); }
+.date { flex: 0 0 11rem; font-family: var(--mono); color: var(--brown); margin: 0; }
+.entry-body { max-width: 34rem; }
+.entry-body p { margin: 0; color: var(--grey); }
+.entry:hover h3 { color: #c47a7a; }   /* small hover effect */
+
+/* ---------- 4. Diaries (faded paper) ---------- */
+.diaries { background: #D9CFBA; color: var(--charcoal); }
+.diaries-layout { display: flex; gap: 4rem; align-items: center; }
+.notebook-side, .diaries-text { flex: 1; }
+
+/* the notebook page: paper, ruled lines, margin line, punched holes, tape and a stain */
+.notebook {
+  position: relative;
+  background-color: #EFE6D2;
+  /* faint ruled lines, one every 2.2rem */
+  background-image: repeating-linear-gradient(transparent 0, transparent 2.1rem, #bcae94 2.1rem, #bcae94 2.2rem);
+  background-position: 0 0;
+  padding: 2.2rem 1.5rem 1.5rem 3.5rem;
+  min-height: 25rem;
+  display: flex;
+  flex-direction: column;
+  transform: rotate(-3deg);
+  box-shadow: 6px 8px 15px rgba(0, 0, 0, 0.3);
+  border-bottom: 3px solid #cfc2a8;           /* shows the thickness of the page */
+  border-radius: 2px 2px 0 6px;               /* slightly worn bottom corner */
+}
+
+/* red margin line down the left side */
+.notebook::before {
+  content: "";
+  position: absolute;
+  top: 0; bottom: 0; left: 2.6rem;
+  border-left: 2px solid rgba(141, 41, 41, 0.6);
+}
+
+/* binding holes down the left edge, made from a repeating dot */
+.notebook::after {
+  content: "";
+  position: absolute;
+  top: 2rem; bottom: 2rem; left: 0.6rem;
+  width: 14px;
+  background: radial-gradient(circle, var(--dark) 5px, transparent 6px) 0 0 / 14px 5.5rem repeat-y;
+}
+
+/* a strip of tape holding the page */
+.tape {
+  position: absolute;
+  top: -12px; right: 2rem;
+  width: 5rem; height: 1.6rem;
+  background: rgba(200, 185, 140, 0.55);
+  transform: rotate(4deg);
+}
+
+.notebook .small-label, .page-no { line-height: 2.2rem; margin: 0; }
+.page-no { font-family: var(--mono); font-size: 0.85rem; color: var(--brown); text-align: right; }
+.writing { padding-top: 0.1rem; }
+
+/* handwriting-style font for the one real sentence */
+.scribble { font-family: var(--hand); font-size: 1.8rem; line-height: 2.2rem; color: #4a4038; margin: 0; transform: rotate(-0.5deg); }
+
+/* grey dotted lines that suggest writing without being any real words */
+.scrawl {
+  display: block;
+  height: 2.2rem;
+  border-bottom: 3px dotted rgba(74, 64, 56, 0.35);
+  transform: rotate(-0.4deg);
+}
+.scrawl:nth-child(odd) { transform: rotate(0.3deg); }
+
+.disclaimer { font-family: var(--mono); font-size: 0.75rem; line-height: 2.2rem; color: var(--red); margin: 0; }
+
+/* bottom of the page: disclaimer text with the ring stamped over its right end */
+.notebook-foot {
+  position: relative;
+  margin-top: auto;      /* pushes this to the bottom of the notebook */
+  padding-top: 2.2rem;
+}
+
+/* ring stamped over the text, coming in from the right side */
+.stain {
+  position: absolute;
+  right: -1.2rem;
+  bottom: -1.4rem;
+  width: 5.5rem; height: 5.5rem;
+  border: 5px solid rgba(138, 100, 60, 0.3);
+  border-radius: 50%;
+  transform: rotate(-8deg);
+}
+
+blockquote {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.7rem;
+  margin: 2rem 0 1rem;
+  padding-left: 1rem;
+  border-left: 3px solid var(--red);
+}
+.small-print { font-size: 0.85rem; color: var(--brown); }
+
+/* ---------- 5. Investigation ---------- */
+.investigation { background: var(--charcoal); }
+.columns { display: flex; gap: 0; }
+.columns article { flex: 1; padding: 0 1.5rem; border-left: 1px solid var(--brown); }
+.columns article:first-child { padding-left: 0; border-left: none; }
+.columns article:hover { background: var(--dark); }
+.number { font-family: var(--mono); font-size: 0.85rem; color: var(--grey); }
+.caution { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--brown); font-size: 0.9rem; color: var(--grey); max-width: 40rem; }
+
+/* ---------- 6. Closing ---------- */
+.closing {
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  background: linear-gradient(rgba(23, 23, 22, 0.85), rgba(23, 23, 22, 0.85)), var(--photo-closing);
+  background-size: cover;
+  background-position: center;
+  background-color: var(--charcoal);
+}
+.closing-text { max-width: 650px; margin: 0 auto; padding: 0 1.5rem; }
+
+/* ---------- 7. Footer ---------- */
+footer { padding: 2.5rem 1.5rem; text-align: center; font-size: 0.9rem; color: var(--grey); border-top: 1px solid var(--brown); }
+.footer-title { font-family: var(--mono); letter-spacing: 0.1em; color: var(--paper); margin-bottom: 0.3rem; }
+
+/* ---------- Tablets ---------- */
+@media (max-width: 850px) {
+  .incident-layout, .diaries-layout, .columns { flex-direction: column; }
+  .columns article { padding: 1.5rem 0; border-left: none; border-top: 1px solid var(--brown); }
+  .columns article:first-child { border-top: none; padding-top: 0; }
+  .notebook { max-width: 26rem; }
+  .diaries-layout { gap: 3rem; }
+}
+
+/* ---------- Phones ---------- */
+@media (max-width: 600px) {
+  section { padding: 4rem 0; }
+  .entry { flex-direction: column; gap: 0.3rem; }
+  .date { flex: none; }
+  .photo-credit, .scroll { display: none; }
+}
+
+/* ---------- For people who want less motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .hero-text { animation: none; }
+}
